@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Documents - Smart Workforce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f7fafc;
+      padding: 2rem;
+      color: #2d3748;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    select {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e0;
+      font-size: 1rem;
+      min-width: 150px;
+    }
+
+    .document-list {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .document-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .document-item:last-child {
+      border-bottom: none;
+    }
+
+    .document-actions button {
+      margin-left: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .preview-btn {
+      background-color: #3182ce;
+      color: white;
+    }
+
+    .download-btn {
+      background-color: #38a169;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Browse Legal Documents</h1>
+
+    <div class="filters">
+      <select id="gender">
+        <option value="">Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="others">Others</option>
+      </select>
+      <select id="location">
+        <option value="">Location</option>
+        <option value="kerala">Kerala</option>
+        <option value="tamilnadu">Tamil Nadu</option>
+        <option value="maharashtra">Maharashtra</option>
+      </select>
+      <select id="workerType">
+        <option value="">Worker Type</option>
+        <option value="migrant">Migrant</option>
+        <option value="contract">Contract</option>
+        <option value="permanent">Permanent</option>
+      </select>
+      <select id="documentType">
+        <option value="">Document Type</option>
+        <option value="policy">Work Policy</option>
+        <option value="rights">Employee Rights</option>
+        <option value="benefits">Benefits</option>
+        <option value="eligibility">Eligibility</option>
+      </select>
+    </div>
+
+    <div class="document-list" id="documentList">
+      <!-- Documents will appear here -->
+    </div>
+  </div>
+
+  <script>
+    const documents = [
+      {
+        name: 'Maternity_Leave_Policy_Kerala.pdf',
+        gender: 'female',
+        location: 'kerala',
+        workerType: 'contract',
+        documentType: 'benefits',
+        url: 'docs/Maternity_Leave_Policy_Kerala.pdf'
+      },
+      {
+        name: 'Migrant_Worker_Rights_TamilNadu.pdf',
+        gender: 'male',
+        location: 'tamilnadu',
+        workerType: 'migrant',
+        documentType: 'rights',
+        url: 'docs/Migrant_Worker_Rights_TamilNadu.pdf'
+      },
+      {
+        name: 'Relocation_Eligibility_Maharashtra.pdf',
+        gender: 'others',
+        location: 'maharashtra',
+        workerType: 'permanent',
+        documentType: 'eligibility',
+        url: 'docs/Relocation_Eligibility_Maharashtra.pdf'
+      }
+    ];
+
+    const filters = ['gender', 'location', 'workerType', 'documentType'];
+
+    filters.forEach(filter => {
+      document.getElementById(filter).addEventListener('change', filterDocuments);
+    });
+
+    function filterDocuments() {
+      const selected = filters.reduce((acc, filter) => {
+        acc[filter] = document.getElementById(filter).value;
+        return acc;
+      }, {});
+
+      const filteredDocs = documents.filter(doc => {
+        return Object.keys(selected).every(key => selected[key] === '' || doc[key] === selected[key]);
+      });
+
+      displayDocuments(filteredDocs);
+    }
+
+    function displayDocuments(docList) {
+      const container = document.getElementById('documentList');
+      container.innerHTML = '';
+      if (docList.length === 0) {
+        container.innerHTML = '<p>No documents match the selected filters.</p>';
+        return;
+      }
+
+      docList.forEach(doc => {
+        const div = document.createElement('div');
+        div.className = 'document-item';
+        div.innerHTML = `
+          <span>${doc.name}</span>
+          <div class="document-actions">
+            <button class="preview-btn" onclick="window.open('${doc.url}', '_blank')">Preview</button>
+            <button class="download-btn" onclick="downloadFile('${doc.url}')">Download</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function downloadFile(url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = url.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Initial render
+    displayDocuments(documents);
+  </script>
+</body>
+
+</html>
