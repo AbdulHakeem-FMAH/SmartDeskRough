@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Workforce Dashboard</title>
+  <title>Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -159,6 +159,7 @@
       <!-- <a href="#upload">Upload Documents</a> -->
       <a href="#browse">Browse Documents</a>
       <a href="#attendance">Attendance</a>
+      <a href="#leave">Apply for Leave</a>
       <a href="#chat">Ask Assistant</a>
     </nav>
   </div>
@@ -176,10 +177,97 @@
     </div>
 
     <div id="attendance" class="section">
-      <h3>Attendance</h3>
-      <button>Check-In</button>
-      <button>Check-Out</button>
-    </div>
+  <h3>Attendance</h3>
+  <div style="margin-bottom: 1rem;">
+    <button>Check-In</button>
+    <button>Check-Out</button>
+  </div>
+
+  <h4 style="margin-top: 2rem; color: #2d3748;">My Attendance Details</h4>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <thead>
+      <tr style="background-color: #2c5282; color: white;">
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Date</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Check-In</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Check-Out</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example dummy data -->
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">2025-05-16</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">09:03 AM</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">05:55 PM</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Present</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">2025-05-15</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">—</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">—</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Absent</td>
+      </tr>
+      <!-- More rows can be appended dynamically -->
+    </tbody>
+  </table>
+
+  <!-- <p style="margin-top: 1rem; color: #4a5568;">Note: Attendance data is shown for the past few days. Connect to backend for live data.</p> -->
+</div>
+
+<div id="leave" class="section">
+  <h3>Apply for Leave</h3>
+
+  <form style="margin-top: 1rem;">
+    <label for="leave-type" style="display: block; margin-bottom: 0.5rem;">Leave Type</label>
+    <select id="leave-type" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 1rem;">
+      <option>Sick Leave</option>
+      <option>Casual Leave</option>
+      <option>Earned Leave</option>
+      <option>Maternity/Paternity Leave</option>
+      <option>Unpaid Leave</option>
+    </select>
+
+    <label for="start-date" style="display: block; margin-bottom: 0.5rem;">Start Date</label>
+    <input type="date" id="start-date" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 1rem;">
+
+    <label for="end-date" style="display: block; margin-bottom: 0.5rem;">End Date</label>
+    <input type="date" id="end-date" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 1rem;">
+
+    <label for="reason" style="display: block; margin-bottom: 0.5rem;">Reason</label>
+    <textarea id="reason" rows="3" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #cbd5e0; margin-bottom: 1rem;" placeholder="Provide a reason for your leave"></textarea>
+
+    <button type="submit">Apply</button>
+  </form>
+
+  <h4 style="margin-top: 2rem; color: #2d3748;">Leave History</h4>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <thead>
+      <tr style="background-color: #2c5282; color: white;">
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Leave Type</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">From</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">To</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dummy data -->
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Casual Leave</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">2025-05-10</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">2025-05-11</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0; color: green;">Approved</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Sick Leave</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">2025-05-18</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">2025-05-20</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0; color: orange;">Pending</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
 
     <div id="chat" class="section">
       <h3>Chat with Assistant</h3>
