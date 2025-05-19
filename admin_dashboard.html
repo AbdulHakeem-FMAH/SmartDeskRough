@@ -157,8 +157,13 @@
     <h2>Dashboard</h2>
     <nav>
       <a href="#upload">Upload Documents</a>
+      <!-- Add to Sidebar Navigation -->
+<a href="#add-employee">Add Employee</a>
+
       <a href="#browse">Browse Documents</a>
-      <a href="#attendance">Attendance</a>
+      <a href="#analytics">Employee Analytics</a>
+
+      <!-- <a href="#attendance">Attendance</a> -->
       <a href="#chat">Ask Assistant</a>
     </nav>
   </div>
@@ -171,16 +176,116 @@
       <p style="margin-top: 1rem;">[ Upload the documents here to categorize it. ]</p>
     </div>
 
+    <!-- Add this section inside .main-content just like other sections -->
+<div id="add-employee" class="section">
+  <h3>Add Employee</h3>
+  <form id="addEmployeeForm">
+    <div style="margin-bottom: 1rem;">
+      <label>Employee Name:</label><br />
+      <input type="text" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Email Address:</label><br />
+      <input type="email" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Phone (optional):</label><br />
+      <input type="tel" style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Role:</label><br />
+      <select required style="width: 100%; padding: 0.5rem;">
+        <option value="">Select Role</option>
+        <option value="Employee">Employee</option>
+        <option value="Admin">Admin</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Gender:</label><br />
+      <select required style="width: 100%; padding: 0.5rem;">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Location:</label><br />
+      <input type="text" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Type of Worker:</label><br />
+      <input type="text" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Employment Type:</label><br />
+      <select required style="width: 100%; padding: 0.5rem;">
+        <option value="">Select Type</option>
+        <option value="Full-Time">Full-Time</option>
+        <option value="Contract">Contract</option>
+      </select>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Assigned Department:</label><br />
+      <input type="text" required style="width: 100%; padding: 0.5rem;" />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label>Initial Status:</label><br />
+      <select required style="width: 100%; padding: 0.5rem;">
+        <option value="">Select Status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <button type="submit">Add Employee</button>
+  </form>
+</div>
+
+
     <div id="browse" class="section">
       <a href="browse.html"><button>Browse Documents</button></a>
       <!-- <p>This section will allow filtering and viewing uploaded legal documents.</p> -->
     </div>
 
-    <div id="attendance" class="section">
+    <div id="analytics" class="section">
+  <h3>Employee Attendance Analytics</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <thead>
+      <tr style="background-color: #2c5282; color: white;">
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Employee Name</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Department</th>
+        <!-- <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Check-ins</th> -->
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Days Present</th>
+        <th style="padding: 0.75rem; border: 1px solid #cbd5e0;">Days Absent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dummy data rows (replace with dynamic content later) -->
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Employee1</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">HR</td>
+        <!-- <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">20</td> -->
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">20</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">3</td>
+      </tr>
+      <tr>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Employee2</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">Tech</td>
+        <!-- <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">22</td> -->
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">23</td>
+        <td style="padding: 0.75rem; border: 1px solid #cbd5e0;">0</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 1rem; color: #4a5568;">[ You can view employee-wise attendance (monthly) here. More analytics like charts can be added. ]</p>
+</div>
+
+
+    <!-- <div id="attendance" class="section">
       <h3>Attendance</h3>
       <button>Check-In</button>
       <button>Check-Out</button>
-    </div>
+    </div> -->
 
     <div id="chat" class="section">
       <h3>Chat with Assistant</h3>
